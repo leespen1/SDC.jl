@@ -1,4 +1,4 @@
-module SpectralDeferredCorrection
+module SDC
 export SDC, make_SDC, make_spectral_int_matrix, gauss_lobatto_nodes
 
 #using Polynomials, Plots, LinearAlgebra, FastGaussQuadrature,InvertedIndices
@@ -63,7 +63,7 @@ user-SDC function. I can imagine a user might want to use variable timestep
 size (but they probably don't need to vary the number of collocation nodes,
 implicit/explicit f, etc).
 """
-function SDC(n, fE, fI, t, Δt, u, implicit_solver)
+function sdc(n, fE, fI, t, Δt, u, implicit_solver)
     nodes = gauss_lobatto_nodes(n)
     n_cor = 2*n-3
     S = make_spectral_int_matrix(n) # nodes will be computed twice; should make more efficient

@@ -3,6 +3,9 @@ uuid = "463ee5a2-86bd-4e81-8b64-771e46a90274"
 authors = ["Spencer Lee <leespen1@msu.edu> and contributors"]
 version = "0.1.0"
 
+[deps]
+FastGaussQuadrature = "442a2c76-b920-505d-bb47-c5924d526838"
+
 [compat]
 julia = "1"
 
