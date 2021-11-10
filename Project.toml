@@ -1,0 +1,13 @@
+name = "SDC"
+uuid = "463ee5a2-86bd-4e81-8b64-771e46a90274"
+authors = ["Spencer Lee <leespen1@msu.edu> and contributors"]
+version = "0.1.0"
+
+[compat]
+julia = "1"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]
