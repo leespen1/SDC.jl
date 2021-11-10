@@ -1,1 +1,2 @@
-# SDC
+# SDC.jl
+Spectral Deferred Correction implementation
