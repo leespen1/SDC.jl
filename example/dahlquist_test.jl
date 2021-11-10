@@ -26,7 +26,7 @@ function main()
     # Initial value
     u_n = u(t)
     # Timesteps
-    Δtimes = [0.5, 0.3, 0.7, 0.4, 0.6]
+    Δtimes = [1.0, 1.0, 1.0, 1.0, 1.0]
     # Non-start times, derived from timesteps
     times = cumsum(Δtimes) .+ t
 
@@ -40,23 +40,16 @@ function main()
         push!(u_approx, u_n)
     end
 
-    # Calculate Errors
+    # Calculate errors
     u_diff_abs = abs.(u_actual - u_approx)
     u_diff_rel = [u_diff_abs[i]/u_actual[i] for i in eachindex(u_diff_abs)]
 
+    # Produce table of results
     table_data = hcat(times, u_actual, u_approx, u_diff_abs, u_diff_rel)
     header = ["t", "u(t)", "est u(t)", "Abs Err", "Rel Err"]
     pretty_table(table_data; header=header)
 
-    #println("Times:")
-    #display(times)
-    #println("Actual Values")
-    #println("\nAbsolute Errors")
-    #display(u_diff_abs)
-    #println("\nRelative Errors")
-    #display(u_diff_rel)
-
-    # Produce Graph of Results
+    # Produce graph of results
     p1 = Plots.plot(times, u_diff_abs, yaxis=:log, title = "Absolute Error of e^t, t_0=0, variable timesteps",
                    legend=false)
     Plots.xlabel!(p1, "Time")
@@ -65,7 +58,9 @@ function main()
                    legend=false)
     Plots.xlabel!(p2, "Time")
     Plots.ylabel!(p2, "Relative Error")
-    return Plots.plot(p1, p2, layout=(2,1))
+    plt = Plots.plot(p1, p2, layout=(2,1))
+    Plots.savefig(plt, "./dahlquist_test.png")
+    return plt
 end
 
 display(main())
