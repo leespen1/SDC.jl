@@ -1,8 +1,9 @@
 module SDC
 export SDC, make_SDC, make_spectral_int_matrix, gauss_lobatto_nodes
 
-#using Polynomials, Plots, LinearAlgebra, FastGaussQuadrature,InvertedIndices
-import FastGaussQuadrature
+using FastGaussQuadrature: gausslobatto
+using InvertedIndices: Not
+using Polynomials: fromroots, integrate 
 #import BenchmarkTools
 
 #"""
@@ -18,7 +19,7 @@ import FastGaussQuadrature
 Get n Gauss-Lobatto quadrature nodes, on interval [0-1].
 """
 function gauss_lobatto_nodes(n::Int)
-    nodes, weights =  FastGaussQuadrature.gausslobatto(n)
+    nodes, weights =  gausslobatto(n)
     return 0.5*(nodes .+ 1.0)
 end
 
